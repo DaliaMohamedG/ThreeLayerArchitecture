@@ -1,4 +1,10 @@
-﻿namespace PresentationLayer
+﻿using BusinessLogicLayer.Services.Classes;
+using BusinessLogicLayer.Services.Interfaces;
+using DataAccessLayer.Data.Contexts;
+using DataAccessLayer.Data.Repository;
+using Microsoft.EntityFrameworkCore;
+
+namespace PresentationLayer
 {
     public class Program
     {
@@ -7,8 +13,22 @@
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            #region DI Container
             builder.Services.AddControllersWithViews();
-
+            //Life Times [object] => AddScoped, AddSinglton, AddTranisent
+            //builder.Services.AddScoped<ApplicationDbContext>();
+            //AddDbContext => allow di dbcontext
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                //options.UseSqlServer("ConnectionStrings");
+                //options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnectionString"]);
+                //options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings")["DefaultConnectionString"]);
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+            });
+            builder.Services.AddScoped<IDepartmentReposatory, DepartmentReposatory>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            //ask u to create object from class IDepartmentReposatory => new instance from DepartmentReposatory
+            #endregion
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,11 +64,5 @@
  * -> solution contain projects, class library container for common code
  * -> soft delete: اخفاء الداتا بدون ما امسحها من الداتا بيز
  * -> hard delete: مسح الداتا تماما من الداتا بيز 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  */

@@ -1,6 +1,6 @@
-﻿namespace DataAccessLayer.Models
+﻿namespace DataAccessLayer.Models.Shared
 {
-    internal class BaseEntity //include the common properties [parent]
+    public class BaseEntity //include the common properties [parent]
     {
         public int Id { get; set; }
         public int CreatedBy { get; set; } //user id
