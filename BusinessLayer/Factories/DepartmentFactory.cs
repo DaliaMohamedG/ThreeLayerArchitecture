@@ -9,7 +9,7 @@ namespace BusinessLogicLayer.Factories
         {
             return new DpartmentDto()
             {
-                DeptId = d.Id,
+                Id = d.Id,
                 Code = d.Code,
                 Name = d.Name,
                 Description = d.Description,

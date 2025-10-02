@@ -15,6 +15,7 @@ namespace PresentationLayer
             // Add services to the container.
             #region DI Container
             builder.Services.AddControllersWithViews();
+
             //Life Times [object] => AddScoped, AddSinglton, AddTranisent
             //builder.Services.AddScoped<ApplicationDbContext>();
             //AddDbContext => allow di dbcontext

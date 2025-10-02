@@ -5,43 +5,56 @@ using DataAccessLayer.Data.Repository;
 
 namespace BusinessLogicLayer.Services.Classes
 {
-    public class DepartmentServices(DepartmentReposatory departmentReposatory1) : IDepartmentServices
+    public class DepartmentServices : IDepartmentServices
     {
-        public readonly IDepartmentReposatory departmentReposatory1 = departmentReposatory1;
+        private readonly IDepartmentReposatory _departmentReposatory;
+
+        // Constructor Injection
+        public DepartmentServices(IDepartmentReposatory departmentReposatory)
+        {
+            _departmentReposatory = departmentReposatory;
+        }
 
         //methods => Repository
-        //GetAll => id, code, name, describtion, DateOfCreation, 
+        //GetAll => id, code, name, description, DateOfCreation
         public IEnumerable<DpartmentDto> GetAllDepartments()
         {
-            //get all repo
-            var departments = departmentReposatory1.GetAll();
+            var departments = _departmentReposatory.GetAll();
             return departments.Select(d => d.toDepartmentDto());
         }
-        //get by id
-        public DepartmentDetailsDto GetDepartmentyId(int id)
+
+        // Get by id
+        public DepartmentDetailsDto GetDepartmentById(int id)
         {
-            var department = departmentReposatory1.GetById(id);
-            //if (department is null) return null;
-            //return department.ToDepartmentDetailsDto();
+            var department = _departmentReposatory.GetById(id);
             return department is null ? null : department.ToDepartmentDetailsDto();
         }
-        //add
+
+        // Add
         public int AddDepartment(CreateDepartmentDto departmentDto)
         {
-            return departmentReposatory1.Add(departmentDto.toEntity());
+            return _departmentReposatory.Add(departmentDto.toEntity());
         }
-        //update
+
+        // Update
         public int UpdateDepartment(UpdatedDepartmentDto departmentDto)
         {
-            return departmentReposatory1.Update(departmentDto.toEntity());
+            return _departmentReposatory.Update(departmentDto.toEntity());
         }
-        //delete
+
+        // Delete
         public bool DeleteDepartment(int id)
         {
-            var department = departmentReposatory1.GetById(id);
+            var department = _departmentReposatory.GetById(id);
             if (department is null) return false;
-            int numOfRows = departmentReposatory1.Remove(department);
+
+            int numOfRows = _departmentReposatory.Remove(department);
             return numOfRows > 0;
+        }
+
+        public DepartmentDetailsDto GetDepartmentyId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
