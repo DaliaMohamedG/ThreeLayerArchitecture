@@ -1,9 +1,8 @@
-﻿using BusinessLogicLayer.DTO;
+﻿using BusinessLogicLayer.DTO.DepartmentDtos;
 using BusinessLogicLayer.Factories;
-using BusinessLogicLayer.Services.Interfaces;
 using DataAccessLayer.Data.Repository;
 
-namespace BusinessLogicLayer.Services.Classes
+namespace BusinessLogicLayer.Services
 {
     public class DepartmentServices : IDepartmentServices
     {

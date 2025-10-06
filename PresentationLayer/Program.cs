@@ -1,5 +1,5 @@
-﻿using BusinessLogicLayer.Services.Classes;
-using BusinessLogicLayer.Services.Interfaces;
+﻿using BusinessLogicLayer.Mappings;
+using BusinessLogicLayer.Services;
 using DataAccessLayer.Data.Contexts;
 using DataAccessLayer.Data.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +28,12 @@ namespace PresentationLayer
             });
             builder.Services.AddScoped<IDepartmentReposatory, DepartmentReposatory>();
             builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
+
+            builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
+            //builder.Services.AddAutoMapper(mapping=>mapping.AddProfile(new MappingProfile()));
+
             //ask u to create object from class IDepartmentReposatory => new instance from DepartmentReposatory
             #endregion
             var app = builder.Build();
@@ -65,5 +71,20 @@ namespace PresentationLayer
  * -> solution contain projects, class library container for common code
  * -> soft delete: اخفاء الداتا بدون ما امسحها من الداتا بيز
  * -> hard delete: مسح الداتا تماما من الداتا بيز 
- * 
+ * -------------------------------------------------------------------------------------------
+📌 الخلاصة – التسلسل:
+
+User → Request.
+Routing → Controller.
+Controller → Service.
+Service → Repository.
+Repository → DbContext (EF Core).
+DbContext → Database (SQL).
+Database → DbContext (dal) → Repository (dal) → Service (bll) → Controller (pl) → View (pl).
+View → HTML للمستخدم.
+----------------------------------------------------------------------------------------------------
+ * factories: create objects
+ * dto: a class to be used by services instead of base entity
+ * IEnumrable: List, Array, Dictionary inherit from interface ienumrable
+ *
  */

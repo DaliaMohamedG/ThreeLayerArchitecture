@@ -1,8 +1,8 @@
 ﻿namespace DataAccessLayer.Models
 {
-    internal enum EmployeeType
+    public enum EmployeeType
     {
-        PartTimeEmployee,
-        FullTimeEmployee
+        PartTimeEmployee = 1,
+        FullTimeEmployee = 2
     }
 }

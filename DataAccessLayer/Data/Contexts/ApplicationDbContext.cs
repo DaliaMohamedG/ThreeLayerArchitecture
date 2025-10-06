@@ -21,5 +21,6 @@ namespace DataAccessLayer.Data.Contexts
 
         }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

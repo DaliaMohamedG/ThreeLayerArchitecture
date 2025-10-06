@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Models
 {
-    internal class Employee : BaseEntity
+    public class Employee : BaseEntity
     {
         public string Name { get; set; } = null!;
         public int Age { get; set; }

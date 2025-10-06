@@ -1,4 +1,4 @@
-﻿using BusinessLogicLayer.DTO;
+﻿using BusinessLogicLayer.DTO.DepartmentDtos;
 using DataAccessLayer.Models;
 
 namespace BusinessLogicLayer.Factories

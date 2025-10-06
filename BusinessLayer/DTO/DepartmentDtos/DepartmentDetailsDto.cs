@@ -1,4 +1,4 @@
-﻿namespace BusinessLogicLayer.DTO
+﻿namespace BusinessLogicLayer.DTO.DepartmentDtos
 {
     public class DepartmentDetailsDto
     {
