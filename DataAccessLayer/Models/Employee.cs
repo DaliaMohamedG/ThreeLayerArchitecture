@@ -16,6 +16,7 @@ namespace DataAccessLayer.Models
         public Gender gender { get; set; }
         //EmployeeType => PartTimeEmployee, FullTimeEmployee
         public EmployeeType employeeType { get; set; }
-
+        public int? DepartmentId { get; set; }
+        public Department? Department { get; set; }
     }
 }

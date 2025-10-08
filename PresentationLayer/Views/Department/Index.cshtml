@@ -1,7 +1,16 @@
 ﻿@model IEnumerable<DpartmentDto>
 @{
     ViewData["Title"] = "Index";
+    var dept = ViewData["Message"] as DpartmentDto; //explicit casting
 }
+
+<div class="alert alert-success">
+   @*  @ViewData["Message"] *@
+   @*  @ViewBag.Message *@
+     @dept.Name
+    @ViewBag.Message.Name
+</div>
+
 
 <h1>All Departments</h1>
 <br />
@@ -31,16 +40,8 @@
                     <td>@Html.DisplayFor(d => department.Description)</td>
                     <td>@Html.DisplayFor(d => department.DateOfCreation)</td>
 
-                    <td>
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@department.Id">
-                            <i class="fas fa-eye"></i> Details
-                        </a>
-                    </td>
-                    <td>
-                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@department.Id">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                    </td>
+                    <partial name="PartialView" model="department.Id"></partial>
+
                     <td>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@department.Id">
                             <i class="fas fa-trash"></i> Delete

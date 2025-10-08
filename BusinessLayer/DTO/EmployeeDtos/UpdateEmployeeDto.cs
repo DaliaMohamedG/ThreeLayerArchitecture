@@ -9,7 +9,7 @@ namespace BusinessLogicLayer.DTO.EmployeeDtos
         public int Id { get; set; }
         [Required(ErrorMessage = "Name Can't Be Null")]
         [MaxLength(50, ErrorMessage = "Max length should be 50 character")]
-        [MinLength(5, ErrorMessage = "Min length should be 5 characters")]
+        [MinLength(3, ErrorMessage = "Min length should be 3 characters")]
         public string Name { get; set; } = null!;
 
         [Range(22, 35)]
@@ -38,5 +38,6 @@ namespace BusinessLogicLayer.DTO.EmployeeDtos
         public Gender Gender { get; set; }
 
         public EmployeeType EmployeeType { get; set; }
+        public int? DepartmentId { get; set; }
     }
 }

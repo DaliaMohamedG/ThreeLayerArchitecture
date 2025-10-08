@@ -3,10 +3,11 @@ using BusinessLogicLayer.Services;
 using DataAccessLayer.Models;
 using DataAccessLayer.Models.Shared;
 using Microsoft.AspNetCore.Mvc;
+using PresentationLayer.Models;
 
 namespace PresentationLayer.Controllers
 {
-    public class EmployeeController(IEmployeeServices employeeServices, IWebHostEnvironment environment, ILogger<EmployeeController> logger) : Controller
+    public class EmployeeController(IEmployeeServices employeeServices, IWebHostEnvironment environment, ILogger<EmployeeController> logger, IDepartmentServices departmentServices) : Controller
     {
         #region Index
         //baseUrl/Employee/Index => send data from controller
@@ -20,7 +21,12 @@ namespace PresentationLayer.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new EmployeeViewModel()
+            {
+                Departments = departmentServices.GetAllDepartments()
+                .Select(d => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = d.Id.ToString(), Text = d.Name })
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult Create(CreateEmployeeDto employeeDto)

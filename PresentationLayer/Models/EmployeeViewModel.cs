@@ -1,14 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAccessLayer.Models;
 using DataAccessLayer.Models.Shared;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BusinessLogicLayer.DTO.EmployeeDtos
+namespace PresentationLayer.Models
 {
-    public class CreateEmployeeDto
+    public class EmployeeViewModel
     {
         [Required(ErrorMessage = "Name Can't Be Null")]
         [MaxLength(50, ErrorMessage = "Max length should be 50 character")]
-        [MinLength(5, ErrorMessage = "Min length should be 5 characters")]
+        [MinLength(3, ErrorMessage = "Min length should be 3 characters")]
         public string Name { get; set; } = null!;
 
         [Range(22, 35)]
@@ -33,8 +34,11 @@ namespace BusinessLogicLayer.DTO.EmployeeDtos
 
         [Display(Name = "Hiring Date")]
         public DateOnly HiringDate { get; set; }
+
         public Gender Gender { get; set; }
+
         public EmployeeType EmployeeType { get; set; }
         public int? DepartmentId { get; set; }
+        public IEnumerable<SelectListItem>? Departments { get; set; }
     }
 }
