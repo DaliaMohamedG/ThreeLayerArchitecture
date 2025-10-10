@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Role Manager - Index";
+}
+
+<h2>All Roles</h2>
+
+<p><a asp-action="Create" class="btn btn-success">Add New Role</a></p>
+
+<form method="get" asp-action="Index">
+    <input type="text" name="search" placeholder="Role's Name" />
+    <button type="submit">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>RoleName</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Id</td>
+                <td>@r.Name</td>
+                <td><a asp-action="Details" asp-route-id="@r.Id">👁️</a></td>
+                <td><a asp-action="Edit" asp-route-id="@r.Id">✏️</a></td>
+                <td><a asp-action="Delete" asp-route-id="@r.Id">🗑️</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

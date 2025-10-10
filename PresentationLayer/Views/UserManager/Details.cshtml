@@ -1,0 +1,27 @@
+﻿@model DataAccessLayer.Models.Shared.ApplicationUser
+@{
+    ViewData["Title"] = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Details</h2>
+<div class="card p-4 mt-3 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">First Name</dt>
+        <dd class="col-sm-9">@Model.FristName</dd>
+
+        <dt class="col-sm-3">Last Name</dt>
+        <dd class="col-sm-9">@Model.LastName</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Phone Number</dt>
+        <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-3">User Name</dt>
+        <dd class="col-sm-9">@Model.UserName</dd>
+    </dl>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
