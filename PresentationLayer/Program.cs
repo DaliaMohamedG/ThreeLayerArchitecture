@@ -1,7 +1,10 @@
 ﻿using BusinessLogicLayer.Mappings;
 using BusinessLogicLayer.Services;
+using BusinessLogicLayer.Services.AttachmentService;
 using DataAccessLayer.Data.Contexts;
 using DataAccessLayer.Data.Repository;
+using DataAccessLayer.Models.Shared;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace PresentationLayer
@@ -31,6 +34,11 @@ namespace PresentationLayer
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
             //builder.Services.AddAutoMapper(mapping=>mapping.AddProfile(new MappingProfile()));
