@@ -11,9 +11,13 @@ namespace PresentationLayer.Controllers
     {
         #region Index
         //baseUrl/Employee/Index => send data from controller
-        public IActionResult Index()
+        public IActionResult Index(string? EmployeeSearchName)
         {
             var employees = employeeServices.GetAllEmployees();
+            if (!string.IsNullOrWhiteSpace(EmployeeSearchName))
+            {
+                employees=employees.Where(e=>e.Name.Contains(EmployeeSearchName, StringComparison.OrdinalIgnoreCase));
+            }
             return View(employees);
         }
         #endregion

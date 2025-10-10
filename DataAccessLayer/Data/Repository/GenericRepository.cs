@@ -5,10 +5,9 @@ namespace DataAccessLayer.Data.Repository
 {
     public class GenericRepository<t>(ApplicationDbContext _dbContext) : IGenericRepository<t> where t : BaseEntity
     {
-        public int Add(t entity)
+        public void Add(t entity)
         {
             _dbContext.Set<t>().Add(entity);//add locally
-            return _dbContext.SaveChanges();
         }
 
         public IEnumerable<t> GetAll(bool withTracking = false)
@@ -25,16 +24,15 @@ namespace DataAccessLayer.Data.Repository
             return _dbContext.Set<t>().Find(id);
         }
 
-        public int Remove(t entity)
+        public void Remove(t entity)
         {
             _dbContext.Set<t>().Remove(entity);
-            return _dbContext.SaveChanges();
         }
 
-        public int Update(t entity)
+        public void Update(t entity)
         {
             _dbContext.Set<t>().Update(entity);
-            return _dbContext.SaveChanges();//number of rows affected
+           // return _dbContext.SaveChanges();//number of rows affected
         }
     }
 }

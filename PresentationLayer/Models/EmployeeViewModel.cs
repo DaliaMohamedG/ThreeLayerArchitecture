@@ -40,5 +40,6 @@ namespace PresentationLayer.Models
         public EmployeeType EmployeeType { get; set; }
         public int? DepartmentId { get; set; }
         public IEnumerable<SelectListItem>? Departments { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

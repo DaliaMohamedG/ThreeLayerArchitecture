@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAccessLayer.Models;
 using DataAccessLayer.Models.Shared;
+using Microsoft.AspNetCore.Http;
 
 namespace BusinessLogicLayer.DTO.EmployeeDtos
 {
@@ -36,5 +37,7 @@ namespace BusinessLogicLayer.DTO.EmployeeDtos
         public Gender Gender { get; set; }
         public EmployeeType EmployeeType { get; set; }
         public int? DepartmentId { get; set; }
+        public IFormFile? Image { get; set; }
+        public string? ImageName { get; set; }
     }
 }

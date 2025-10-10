@@ -4,10 +4,10 @@ namespace DataAccessLayer.Data.Repository
 {
     public interface IGenericRepository<t> where t : BaseEntity
     {
-        int Add(t entity);//int Add(Department department);
+        void Add(t entity);//int Add(Department department);
         IEnumerable<t> GetAll(bool withTracking = false);
         t? GetById(int id);
-        int Remove(t entity);
-        int Update(t entity);
+        void Remove(t entity);
+        void Update(t entity);
     }
 }
